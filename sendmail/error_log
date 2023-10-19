@@ -1,0 +1,82 @@
+[26-Mar-2022 16:56:33 UTC] PHP Warning:  require(vendor\autoload.php): failed to open stream: No such file or directory in /home/oyschste/public_html/testmail/index.php on line 6
+[26-Mar-2022 16:56:33 UTC] PHP Warning:  require(vendor\autoload.php): failed to open stream: No such file or directory in /home/oyschste/public_html/testmail/index.php on line 6
+[26-Mar-2022 16:56:33 UTC] PHP Fatal error:  require(): Failed opening required 'vendor\autoload.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/oyschste/public_html/testmail/index.php on line 6
+[26-Mar-2022 16:56:42 UTC] PHP Warning:  require(vendor\autoload.php): failed to open stream: No such file or directory in /home/oyschste/public_html/testmail/index.php on line 6
+[26-Mar-2022 16:56:42 UTC] PHP Warning:  require(vendor\autoload.php): failed to open stream: No such file or directory in /home/oyschste/public_html/testmail/index.php on line 6
+[26-Mar-2022 16:56:42 UTC] PHP Fatal error:  require(): Failed opening required 'vendor\autoload.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/oyschste/public_html/testmail/index.php on line 6
+[02-Nov-2022 01:33:17 UTC] PHP Notice:  Undefined variable: flktransref in /home/oyschste/public_html/testmail/index.php on line 17
+[02-Nov-2022 01:33:17 UTC] PHP Notice:  Undefined variable: message15 in /home/oyschste/public_html/testmail/index.php on line 37
+[02-Nov-2022 01:41:20 UTC] PHP Notice:  Undefined variable: flktransref in /home/oyschste/public_html/testmail/index.php on line 17
+[02-Nov-2022 01:41:20 UTC] PHP Notice:  Undefined variable: message15 in /home/oyschste/public_html/testmail/index.php on line 38
+[02-Nov-2022 01:41:20 UTC] PHP Notice:  Undefined variable: message15 in /home/oyschste/public_html/testmail/index.php on line 38
+[07-Nov-2022 10:25:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 10
+[07-Nov-2022 10:25:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 11
+[07-Nov-2022 10:25:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 12
+[07-Nov-2022 10:25:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 13
+[07-Nov-2022 10:25:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 15
+[07-Nov-2022 10:25:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 16
+[07-Nov-2022 10:25:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 18
+[07-Nov-2022 10:25:57 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 19
+[07-Nov-2022 10:25:57 UTC] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: Invalid address:  (to):  in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php:1092
+Stack trace:
+#0 /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php(1014): PHPMailer\PHPMailer\PHPMailer->addOrEnqueueAnAddress('to', '', '')
+#1 /home/oyschste/public_html/epayment/sendmail/sendmailfail.php(80): PHPMailer\PHPMailer\PHPMailer->addAddress(NULL)
+#2 {main}
+  thrown in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1092
+[07-Nov-2022 10:26:48 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 10
+[07-Nov-2022 10:26:48 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 11
+[07-Nov-2022 10:26:48 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 12
+[07-Nov-2022 10:26:48 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 13
+[07-Nov-2022 10:26:48 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 15
+[07-Nov-2022 10:26:48 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 16
+[07-Nov-2022 10:26:48 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 18
+[07-Nov-2022 10:26:48 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 19
+[07-Nov-2022 10:26:48 UTC] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: Invalid address:  (to):  in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php:1092
+Stack trace:
+#0 /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php(1014): PHPMailer\PHPMailer\PHPMailer->addOrEnqueueAnAddress('to', '', '')
+#1 /home/oyschste/public_html/epayment/sendmail/sendmailfail.php(80): PHPMailer\PHPMailer\PHPMailer->addAddress(NULL)
+#2 {main}
+  thrown in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1092
+[07-Nov-2022 10:26:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 10
+[07-Nov-2022 10:26:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 11
+[07-Nov-2022 10:26:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 12
+[07-Nov-2022 10:26:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 13
+[07-Nov-2022 10:26:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 15
+[07-Nov-2022 10:26:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 16
+[07-Nov-2022 10:26:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 18
+[07-Nov-2022 10:26:50 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 19
+[07-Nov-2022 10:26:50 UTC] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: Invalid address:  (to):  in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php:1092
+Stack trace:
+#0 /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php(1014): PHPMailer\PHPMailer\PHPMailer->addOrEnqueueAnAddress('to', '', '')
+#1 /home/oyschste/public_html/epayment/sendmail/sendmailfail.php(80): PHPMailer\PHPMailer\PHPMailer->addAddress(NULL)
+#2 {main}
+  thrown in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1092
+[07-Nov-2022 10:26:51 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 10
+[07-Nov-2022 10:26:51 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 11
+[07-Nov-2022 10:26:51 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 12
+[07-Nov-2022 10:26:51 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 13
+[07-Nov-2022 10:26:51 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 15
+[07-Nov-2022 10:26:51 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 16
+[07-Nov-2022 10:26:51 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 18
+[07-Nov-2022 10:26:51 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 19
+[07-Nov-2022 10:26:51 UTC] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: Invalid address:  (to):  in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php:1092
+Stack trace:
+#0 /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php(1014): PHPMailer\PHPMailer\PHPMailer->addOrEnqueueAnAddress('to', '', '')
+#1 /home/oyschste/public_html/epayment/sendmail/sendmailfail.php(80): PHPMailer\PHPMailer\PHPMailer->addAddress(NULL)
+#2 {main}
+  thrown in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1092
+[07-Nov-2022 10:26:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 10
+[07-Nov-2022 10:26:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 11
+[07-Nov-2022 10:26:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 12
+[07-Nov-2022 10:26:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 13
+[07-Nov-2022 10:26:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 15
+[07-Nov-2022 10:26:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 16
+[07-Nov-2022 10:26:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 18
+[07-Nov-2022 10:26:52 UTC] PHP Notice:  Undefined variable: _SESSION in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 19
+[07-Nov-2022 10:26:52 UTC] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: Invalid address:  (to):  in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php:1092
+Stack trace:
+#0 /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php(1014): PHPMailer\PHPMailer\PHPMailer->addOrEnqueueAnAddress('to', '', '')
+#1 /home/oyschste/public_html/epayment/sendmail/sendmailfail.php(80): PHPMailer\PHPMailer\PHPMailer->addAddress(NULL)
+#2 {main}
+  thrown in /home/oyschste/public_html/epayment/sendmail/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1092
+[07-Nov-2022 10:28:09 UTC] PHP Notice:  Undefined index: paymenttype in /home/oyschste/public_html/epayment/sendmail/sendmailfail.php on line 16
