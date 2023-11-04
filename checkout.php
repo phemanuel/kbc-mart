@@ -400,7 +400,7 @@ $count=mysqli_num_rows($result1);
                                                 <?php
 require "dbconfig.php";// Database connection
 //////////////////////////////
-echo "<select name= 'countryname' class='form-control' required>";
+echo "<select name= 'country_name' class='form-control' required>";
 echo '<option value="">'.'--- Select Country ---'.'</option>';
 //$query=mysqli_query($con,"SELECT id,FirstName FROM persons");
 $query = mysqli_query($conn,"SELECT country_name FROM countrylist order by country_name asc");

@@ -88,10 +88,11 @@
                   <div class="col-sm-5">
                     <input type="file" id="photo" name="photo">
                   </div>
-                  <label for="name" class="col-sm-1 control-label">Delivery Duration</label>
+                  <label for="name" class="col-sm-1 control-label">Delivery Duration(Days)</label>
 
                   <div class="col-sm-5">
                     <input type="text" class="form-control" id="delivery_duration" name="delivery_duration" required>
+          
                   </div>
                 </div>
                 <p><b>Description</b></p>

@@ -33,7 +33,7 @@
 
 			try{
 				$stmt = $conn->prepare("INSERT INTO products (category_id, name, description, slug, price, photo,sub_category_name,category_name,delivery_duration) VALUES (:category, :name, :description, :slug, :price, :photo,:sub_category_name,:category_name,:delivery_duration)");
-				$stmt->execute(['category'=>$category, 'name'=>$name, 'description'=>$description, 'slug'=>$slug, 'price'=>$price, 'photo'=>$new_filename,'sub_category_name'=>$sub_category_name,'category_name'=>$category_name,'delivery_duration'=>$delivery_duration]);
+				$stmt->execute(['category'=>$category, 'name'=>$name, 'description'=>$description, 'slug'=>$slug, 'price'=>$price, 'photo'=>$new_filename,'sub_category_name'=>$sub_category_name,'category_name'=>$category,'delivery_duration'=>$delivery_duration]);
 				$_SESSION['success'] = 'Product added successfully';
 
 			}

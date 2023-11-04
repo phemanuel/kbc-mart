@@ -12,7 +12,7 @@
                  <div class="form-group">
                     <label for="name" class="col-sm-3 control-label">Category</label>
                     <div class="col-sm-9">
-                      <select class="form-control" name="name">
+                      <select class="form-control" name="cat_name">
                       <?php
              
                 $conn = $pdo->open();
@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <label for="name" class="col-sm-3 control-label">Sub-category</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="name1" name="name1" required>
+                      <input type="text" class="form-control" id="sub_cat_name" name="sub_cat_name" required>
                     </div>
                 </div>
             </div>
@@ -61,16 +61,45 @@
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title"><b>Edit Sub-Category</b></h4>
+              <h4 class="modal-title"><b>Edit Category</b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="sub_category_edit">
+              <form class="form-horizontal" method="POST" action="sub_category_edit.php">
                 <input type="hidden" class="catid" name="id">
                 <div class="form-group">
-                    <label for="edit_name" class="col-sm-3 control-label">Name</label>
+                    <label for="name" class="col-sm-3 control-label">Category</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" id="edit_name" name="cat_name">                      
+                      <?php
+             
+                $conn = $pdo->open();
+                try{
+                  $stmt = $conn->prepare("SELECT * FROM category order by name ASC");
+                  $stmt->execute();
+                  
+                  foreach($stmt as $row){
+                    echo "
+                     
+                      <option> ".$row['name']."</option>
+                      
+                    ";                  
+                  }
+                }
+                catch(PDOException $e){
+                  echo "There is some problem in connection: " . $e->getMessage();
+                }
+
+                $pdo->close();
+
+              ?>
+              </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_name" class="col-sm-3 control-label">Sub-Category</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_name" name="name">
+                      <input type="text" class="form-control" id="edit_name1" name="sub_cat_name">
                     </div>
                 </div>
             </div>

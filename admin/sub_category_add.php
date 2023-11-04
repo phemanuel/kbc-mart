@@ -3,8 +3,8 @@
 	include 'includes/session.php';
 
 	if(isset($_POST['add'])){
-		$name = $_POST['name'];
-		$name1 = $_POST['name1'];
+		$name = $_POST['cat_name'];
+		$name1 = $_POST['sub_cat_name'];
 
 		$conn = $pdo->open();
 

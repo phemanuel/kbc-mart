@@ -98,7 +98,7 @@
 </div>
 <!-- ./wrapper -->
 
-<?php include 'includes/scripts.php'; ?>
+<?php include 'includes/scripts.php'; ?> 
 <script>
 $(function(){
   $(document).on('click', '.edit', function(e){
@@ -125,8 +125,9 @@ function getRow(id){
     dataType: 'json',
     success: function(response){
       $('.catid').val(response.id);
-      $('#edit_name').val(response.name);
-      $('.catname').html(response.name);
+      $('#edit_name').val(response.cat_name);
+      $('#edit_name1').val(response.sub_cat_name);
+      $('.catname').html(response.name); 
     }
   });
 }

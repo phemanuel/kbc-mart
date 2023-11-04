@@ -2,7 +2,7 @@
 
 Class Database{
  
-	private $server = "mysql:host=localhost;dbname=kbcmart";
+	private $server = "mysql:host=127.0.0.1;dbname=kbcmart";
 	private $username = "root";
 	private $password = "root1987";
 	private $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,);

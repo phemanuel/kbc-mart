@@ -46,14 +46,14 @@
 				                </button>
 				            </span>
 						</td>
-						<td>&#36; ".number_format($subtotal, 2)."</td>
+						<td>=N= ".number_format($subtotal, 2)."</td>
 					</tr>
 				";
 			}
 			$output .= "
 				<tr>
 					<td colspan='5' align='right'><b>Total</b></td>
-					<td><b>&#36; ".number_format($total, 2)."</b></td>
+					<td><b>=N= ".number_format($total, 2)."</b></td>
 				<tr>
 			";
 
