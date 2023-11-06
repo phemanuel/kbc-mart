@@ -127,7 +127,7 @@ body {
 
     <div class="main">
 
-        <div class="container">
+        <div class="container" style="margin-left: auto; margin-right: auto;">
             <form id="paymentForm" method="post" class="appointment-form">
             <table width="100%" border="0" cellpadding="4" cellspacing="4" >
                                  

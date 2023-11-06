@@ -12,6 +12,7 @@ session_start();
 		$amount = number_format($_SESSION['price_total'],2);
         $pay_id = $_SESSION['pay_id'];
         $payment_option = $_SESSION['payment_option'];
+        $userid = $_SESSION['user'];
  
 //======prepare message=====
 $message = "
@@ -34,7 +35,7 @@ $message = "
                         <br>
 
                         </table>
-						<a href='http://localhost/kbcmart/myorderview?orderid=".$pay_id."'>View Order</a>
+						<strong><a href='http://127.0.0.1/kbcmart/myorderview?orderid=".$pay_id."&user=".$userid."'>View Order</a></strong>
 					";
 
   
@@ -61,7 +62,7 @@ $mail->Password   = 'noreply@2023';         // SMTP password
    // $mail->addAddress('miracle.kingsbranding@gmail.com');
        
     $mail->isHTML(true);                                  
-    $mail->Subject = 'KBC Supermart Order';
+    $mail->Subject = 'Order Details';
     $mail->Body    = $message;
     $mail->AltBody = 'Body in plain text for non-HTML mail clients';
     $mail->send();

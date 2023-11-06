@@ -17,7 +17,7 @@
 		$city= $_POST['city'];
 		$zipcode= $_POST['zipcode'];
 		$ordernote= $_POST['ordernote'];
-		$payment_option = $_POST['payment_option'];
+		$payment_option = $_POST['payment_option']; 
 
 		$_SESSION['state']= $state;
 		$_SESSION['city']= $city;

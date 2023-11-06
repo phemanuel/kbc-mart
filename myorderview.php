@@ -1,98 +1,19 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'dbconfig.php'; ?>
 <?php
-
-if(isset($_SESSION['user'])){
-
-goto v;
-}
-else{
-echo "<script>
-alert('You need to login before you checkout.');
-window.location.href='login';
-</script>";
-}
-
-
-v:
-$user_id=$_SESSION['user'];
-
-$sql="SELECT * FROM cart WHERE user_id = '$user_id' ";
-$result=mysqli_query($conn,$sql);
-
-$count=mysqli_num_rows($result);
-
-if ($count < 1){
-        echo "<script>
-alert('The cart is empty, therefore you cannot checkout.');
-window.location.href='index';
-</script>";
-}
-else{
-
-//=====retrieve details-------
-
-$sql1="SELECT * FROM users WHERE id = '$user_id' ";
-$result1=mysqli_query($conn,$sql1);
-
-while($rowval = mysqli_fetch_array($result1))
-{
-    $user_name = $rowval['firstname']. " " . $rowval['lastname'];
-
-} 
-
-goto a;
-}
-
-exit;
-
-
-a:
-//=generate payment id================
-function GeraHash($qtd){
-//Under the string $Caracteres you write all the characters you want to be used to randomly generate the code.
-$Caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
-$QuantidadeCaracteres = strlen($Caracteres);
-$QuantidadeCaracteres--;
-
-$Hash=NULL;
-    for($x=1;$x<=$qtd;$x++){
-        $Posicao = rand(0,$QuantidadeCaracteres);
-        $Hash .= substr($Caracteres,$Posicao,1);
-    }
-
-return $Hash; 
-}
-
-//Here you specify how many characters the returning string must have
-$pay_id = "PAY-". GeraHash(12);
-$_SESSION['pay_id'] = $pay_id;
- 
-//====check if pay
-$sql="SELECT * FROM sales WHERE pay_id = '$pay_id'";
-$result=mysqli_query($conn,$sql);
-$count=mysqli_num_rows($result);
-
-if ($count==1){
-    
- goto a;
-} 
-else { 
-    goto b;
-}
-
-exit;
-b:
+session_start();
+$_SESSION['user'] = $_GET['user'];
 ?>
+<?php include 'includes/session1.php'; ?>
+<?php  include 'dbconfig1.php'; ?>
+
 
 <!doctype html>
 <html class="no-js" lang="zxx">
     
-<!-- checkout31:27-->
+<!-- login-register31:27-->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>KBC Supermart || Checkout</title>
+        <title>KBC Supermart || My Orders</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -127,6 +48,35 @@ b:
         <link rel="stylesheet" href="style.css">
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="css/responsive.css">
+
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- Paypal Express -->
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <!-- Google Recaptcha -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+
         <!-- Modernizr js -->
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
@@ -376,175 +326,95 @@ $count=mysqli_num_rows($result1);
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index">Home</a></li>
-                            <li><a href="shop">Shop</a></li>
-                            <li class="active">Checkout</li>
-
+                            <li class="active">My Orders</li>
                         </ul>
-                    </div>
+                    </div>   
+    
+
+                                    </div>
                 </div>
             </div>
             <!-- Li's Breadcrumb Area End Here -->
-            <!--Checkout Area Strat-->
-            <div class="checkout-area pt-60 pb-30">
+                            
+            <!-- Begin Login Content Area -->
+            <div class="page-section mb-60">
                 <div class="container">
-                    
                     <div class="row">
-                        <div class="col-lg-6 col-12">
-                            <form action="sales?pay=<?php echo $pay_id; ?>" method="POST">
-                                <div class="checkbox-form">
-                                    <h5>Billing Details</h5><br>
+
+                        <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+                            <form action="" method="POST">
+                                <div class="login-form">
+                                    
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="country-select clearfix">
-                                                <label>Country <span class="required">*</span></label>
-                                                <?php
-require "dbconfig.php";// Database connection
-//////////////////////////////
-echo "<select name= 'countryname' class='form-control' required>";
-echo '<option value="">'.'--- Select Country ---'.'</option>';
-//$query=mysqli_query($con,"SELECT id,FirstName FROM persons");
-$query = mysqli_query($conn,"SELECT country_name FROM countrylist order by country_name asc");
-$query_display = mysqli_query($conn,"SELECT * FROM countrylist");
-while($row=mysqli_fetch_array($query))
-{
-    echo "<option value='". $row['country_name']."'>".$row['country_name']
- .'</option>';
-}
-echo '</select>';
-?></td>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="checkout-form-list">
-                                                <label>First Name <span class="required">*</span></label>
-                                                <input placeholder="" type="text" name="firstname" value="<?php echo $user['firstname'] ?>" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="checkout-form-list">
-                                                <label>Last Name <span class="required">*</span></label>
-                                                <input placeholder="" type="text" name="lastname" value="<?php echo $user['lastname'] ?>" required>
-                                            </div>
-                                        </div>      
-                                        <div class="col-md-6">
-                                            <div class="checkout-form-list">
-                                                <label>Email Address <span class="required">*</span></label>
-                                                <input placeholder="" type="email" name="email" value="<?php echo $user['email'] ?>" required>
-                                            </div>
-                                        </div>   
-                                        <div class="col-md-6">
-                                            <div class="checkout-form-list">
-                                                <label>Phone  <span class="required">*</span></label>
-                                                <input type="text" name="mobileno" value="<?php echo $user['contact_info'] ?>" required>
-                                            </div>
-                                        </div>                               
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>Address <span class="required">*</span></label>
-                                                <input placeholder="Street address" type="text" name="address" value="<?php echo $user['address'] ?>" required>
-                                            </div>
-                                        </div>  
-                                        <div class="col-md-6">
-                                            <div class="checkout-form-list">
-                                                <label>State<span class="required">*</span></label>
-                                                <input placeholder="" type="text" name="state" required value="<?php echo (!empty($_SESSION['state'])) ? $_SESSION['state'] : 'N/A'; ?>">
-                                            </div>
-                                        </div>                                      
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>City <span class="required">*</span></label>
-                                                <input type="text" name="city" required value="<?php echo (!empty($_SESSION['city'])) ? $_SESSION['city'] : 'N/A'; ?>">
-                                            </div>
-                                        </div>                                        
-                                        <div class="col-md-6">
-                                            <div class="checkout-form-list">
-                                                <label>Zip Code<span class="required">*</span></label>
-                                                <input placeholder="" type="text" name="zipcode" required value="<?php echo (!empty($_SESSION['zipcode'])) ? $_SESSION['zipcode'] : 'N/A'; ?>">
-                                            </div>
-                                        </div>                                   
                                         
-                                    </div>
-                                    <div class="different-address">
-                                        <div class="order-notes">
-                                            <div class="checkout-form-list">
-                                                <label>Order Notes</label>
-                                                <textarea name="ordernote" id="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery." required></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            
+<div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title"><i class="fa fa-calendar"></i> <b>Transaction History</b></h4>
                         </div>
-                        <div class="col-lg-6 col-12">
-                            <div class="your-order">
-                                <h5> Order - <?php echo $pay_id; ?></h5>
-                                <div class="your-order-table table-responsive">                                  
-                                <div class="table-content table-responsive">
-                                    <table class="table">
-                            <thead>
-                                <th></th>
-                                <th>Item</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th width="20%">Quantity</th>
-                                <th>Subtotal</th>
-                            </thead>
-                            <tbody id="tbody">
-                            </tbody>
-                        </table><br>
-                                </div>                                
-                                
-                            
-                                </div>
-                                <div class="payment-method">
-                                    <div class="payment-accordion">
-                                        <div id="accordion">
-                                         
-                                          <div class="card">
-                                            <div class="card-header" id="#payment-3">
-                                              <h5 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                  Select payment option
+                        <div class="box-body">
+                            <table class="table table-bordered" id="example1">
+                                <thead>                                    
+                                    <th>Date</th>
+                                    <th>Transaction#</th>
+                                    <th>Amount</th>
+                                    <th>Full Details</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+   
 
-                                                </a>
-                                              </h5>
-                                              <div class="col-md-12">
-                                            <div class="country-select clearfix">
-                                                      <select name="payment_option" class="form-control">
-                                                        <option>--- Select Payment Option ---</option>
-                                                        <option><?php echo (!empty($_SESSION['payment_option'])) ? $_SESSION['payment_option'] : ' '; ?></option>
-                                                    <option>Direct Bank Transfer</option>
-                                                    <option>Web Pay (Paystack)</option>
-                                                      </select>                                          
-                                            </div>
-                                        </div>
-                                            </div>                                            
-                                          </div>
-                                        </div>
+                                    $conn = $pdo->open();
+                                    $counter = 0 ;
 
-                                        <?php
-                        if(isset($_SESSION['user'])){
-                            echo "
-                                <div class='order-button-payment'><input value='Place order' type='submit'> </div>
-                            ";
-                        }
-                        else{
-                            echo "
-                                <h4>You need to  <strong><a href='login'>Login</a></strong>  to checkout.</h4>
-                            ";
-                        }
-                    ?>
-                                        
-                                    </div>
+                                    try{
+                                        $stmt = $conn->prepare("SELECT * FROM sales WHERE user_id=:user_id AND pay_id=:pay_id ORDER BY sales_date DESC ");
+                                        $stmt->execute(['user_id'=>$user['id'], 'pay_id'=>$_GET['orderid']]);
+                                        foreach($stmt as $row){
+                                            $stmt2 = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE sales_id=:id");
+                                            $stmt2->execute(['id'=>$row['id']]);
+                                            $total = 0;
+                                            foreach($stmt2 as $row2){
+                                                $subtotal = $row2['price']*$row2['quantity'];
+                                                $total += $subtotal;
+                                            }
+                                            
+                                            echo "
+                                            
+                                                <tr>                                                    
+                                                    <td>".date('M d, Y', strtotime($row['sales_date']))."</td>
+                                                    <td>".$row['pay_id']."</td>
+                                                    <td>=N= ".number_format($total, 2)."</td>
+                                                    <td><button class='btn btn-sm btn-flat btn-info transact' data-id='".$row['id']."'><i class='fa fa-search'></i> View</button></td>
+                                                </tr>
+                                                
+                                            ";
+                                        }
+
+                                    }
+                                    catch(PDOException $e){
+                                        echo "There is some problem in connection: " . $e->getMessage();
+                                    }
+
+                                    $pdo->close();
+
+                                ?>
+</tbody>
+                            </table> 
+
+
+</div>
+                                </div>    
                                 </div>
-                            </div>
-                        </div>
+                                </div>                            
+                                                       
+                        </div>                        
                     </div>
                 </div>
-                </form>
+                <?php include 'includes/profile_modal.php'; ?>
             </div>
-            <!--Checkout Area End-->
-           <!-- Begin Footer Area -->
+            <br>
+            <!-- Login Content Area End Here -->
+            <!-- Begin Footer Area -->
             <div class="footer">
                 <!-- Begin Footer Static Top Area -->
                 <div class="footer-static-top">
@@ -610,7 +480,7 @@ echo '</select>';
                     </div>
                 </div>
                 <!-- Footer Static Top Area End Here -->
-                 <!-- Begin Footer Static Middle Area -->
+                <!-- Begin Footer Static Middle Area -->
                 <div class="footer-static-middle">
                     <div class="container">
                         <div class="footer-logo-wrap pt-50 pb-35">
@@ -786,106 +656,32 @@ echo '</select>';
         <script src="js/main.js"></script>
     </body>
 
-<!-- checkout31:27-->
-</html>
+<!-- login-register31:27-->
+
 <?php include 'includes/scripts.php'; ?>
 <script>
-var total = 0;
 $(function(){
-    $(document).on('click', '.cart_delete', function(e){
+    $(document).on('click', '.transact', function(e){
         e.preventDefault();
+        $('#transaction').modal('show');
         var id = $(this).data('id');
         $.ajax({
             type: 'POST',
-            url: 'cart_delete.php',
+            url: 'transaction.php',
             data: {id:id},
             dataType: 'json',
-            success: function(response){
-                if(!response.error){
-                    getDetails();
-                    getCart();
-                    getTotal();
-                }
+            success:function(response){
+                $('#date').html(response.date);
+                $('#transid').html(response.transaction);
+                $('#detail').prepend(response.list);
+                $('#total').html(response.total);
             }
         });
     });
 
-    $(document).on('click', '.minus', function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var qty = $('#qty_'+id).val();
-        if(qty>1){
-            qty--;
-        }
-        $('#qty_'+id).val(qty);
-        $.ajax({
-            type: 'POST',
-            url: 'cart_update.php',
-            data: {
-                id: id,
-                qty: qty,
-            },
-            dataType: 'json',
-            success: function(response){
-                if(!response.error){
-                    getDetails();
-                    getCart();
-                    getTotal();
-                }
-            }
-        });
+    $("#transaction").on("hidden.bs.modal", function () {
+        $('.prepend_items').remove();
     });
-
-    $(document).on('click', '.add', function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var qty = $('#qty_'+id).val();
-        qty++;
-        $('#qty_'+id).val(qty);
-        $.ajax({
-            type: 'POST',
-            url: 'cart_update.php',
-            data: {
-                id: id,
-                qty: qty,
-            },
-            dataType: 'json',
-            success: function(response){
-                if(!response.error){
-                    getDetails();
-                    getCart();
-                    getTotal();
-                }
-            }
-        });
-    });
-
-    getDetails();
-    getTotal();
-
 });
-
-function getDetails(){
-    $.ajax({
-        type: 'POST',
-        url: 'cart_details.php',
-        dataType: 'json',
-        success: function(response){
-            $('#tbody').html(response);
-            getCart();
-        }
-    });
-}
-
-function getTotal(){
-    $.ajax({
-        type: 'POST',
-        url: 'cart_total.php',
-        dataType: 'json',
-        success:function(response){
-            total = response;
-        }
-    });
-}
 </script>
-
+</html>

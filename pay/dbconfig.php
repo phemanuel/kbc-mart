@@ -2,10 +2,10 @@
 //database_connection.php
 
 //$connect = new PDO('mysql:host=localhost;dbname=testing2', 'root', 'root1987');
- $servername = "localhost";
+ $servername = "127.0.0.1";
 $username = "root";
 $password = "root1987";
-$dbname = "ecomm";
+$dbname = "kbcmart";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -16,7 +16,7 @@ session_start();
 $message = " 
 						<h2>Thank you for Registering.</h2>
 						<p>Please click the link below to activate your account.</p>
-						<a href='http://localhost/ecomm/activate?code=".$activation_code."&user=".$userid."'>Activate Account</a>
+						<a href='http://127.0.0.1/kbcmart/activate?code=".$activation_code."&user=".$userid."'>Activate Account</a>
 					";
 
   
